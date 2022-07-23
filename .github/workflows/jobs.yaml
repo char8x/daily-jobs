@@ -1,0 +1,22 @@
+name: jobs
+on:
+  schedule:
+    - cron: "0 1 * * *" # run once a day
+  workflow_dispatch: {}
+  push:
+    paths:
+      - .github/workflows/jobs.yml # Only run a new workflow every time this file (flat.yaml) file changes
+      - ./process.ts
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: Check out repo
+        uses: actions/checkout@v3
+      - name: Run Script
+        run: |
+          deno run -A ./process.ts
