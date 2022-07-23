@@ -5,7 +5,7 @@ on:
   workflow_dispatch: {}
   push:
     paths:
-      - .github/workflows/jobs.yml # Only run a new workflow every time this file (flat.yaml) file changes
+      - .github/workflows/jobs.yml # Only run a new workflow every time this file (jobs.yaml) file changes
       - ./process.ts
 jobs:
   scheduled:
