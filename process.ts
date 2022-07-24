@@ -1,4 +1,4 @@
-import { load } from "https://esm.sh/cheerio@1.0.0-rc.12";
+import { cheerioLoad } from "./deps.ts";
 
 async function sendMessage(text: string) {
   const token = Deno.env.get("TELEGRAM_BOT_TOKEN") || "";
@@ -20,7 +20,7 @@ const html = await fetch("https://www.alfredapp.com/workflows/").then((res) =>
   res.text()
 );
 
-const $ = load(html);
+const $ = cheerioLoad(html);
 const pageText = $(
   "#workflowspage > section:nth-child(4) > div > div > p:nth-child(1)",
 ).text().trim();
