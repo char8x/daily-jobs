@@ -22,7 +22,7 @@ jobs:
         run: deno fmt --check
 
       - name: Cache dependencies
-        run: deno cache --import-map=./import_map.json depts.ts
+        run: deno cache --config deno.jsonc deps.ts
 
       - name: Cache Chrome (Linux)
         uses: actions/cache@v2
