@@ -1,7 +1,7 @@
 name: jobs
 on:
   schedule:
-    - cron: "0 1 * * *" # run once a day
+    - cron: '0 1 * * *' # run once a day
   workflow_dispatch: {}
   push:
     branches: [main]
@@ -40,6 +40,10 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           deno run -A ./process.ts
+
+      - name: Run Puppeteer Script
+        run: |
+          deno run -A ./puppeteer.ts
 
       - name: Type check script
         run: deno check --remote process.ts
