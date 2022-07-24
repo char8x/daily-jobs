@@ -4,9 +4,8 @@ on:
     - cron: "0 1 * * *" # run once a day
   workflow_dispatch: {}
   push:
-    paths:
-      - .github/workflows/jobs.yml # Only run a new workflow every time this file (jobs.yaml) file changes
-      - ./process.ts
+    branches: [main]
+
 jobs:
   scheduled:
     runs-on: ubuntu-latest
@@ -22,9 +21,25 @@ jobs:
       - name: Verify formatting
         run: deno fmt --check
 
+      - name: Cache dependencies
+        run: deno cache --no-check --import-map=./import_map.json
+
+      - name: Cache Chrome (Linux)
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/deno/deno_puppeteer
+          key: chrome-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
+          restore-keys: chrome-${{ runner.os }}-
+
+      - name: Install Chromium (Unix)
+        run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@14.1.1/install.ts
+
       - name: Run Script
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           deno run -A ./process.ts
+
+      - name: Type check script
+        run: deno check --remote process.ts
