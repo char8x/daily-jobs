@@ -31,7 +31,7 @@ if (
 ) {
   await sendMessage("Alfred Workflows Store 已经开放了，快去查看!");
 } else {
-  console.log('==============================');
+  console.log("==============================");
   console.log(pageText);
-  console.log('==============================');
+  console.log("==============================");
 }

@@ -11,15 +11,17 @@ jobs:
   scheduled:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
       - name: Setup deno
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-      - name: Check out repo
-        uses: actions/checkout@v3
+
       - name: Run Script
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          deno run -A --import-map=import_map.json ./process.ts
+          deno run -A ./process.ts

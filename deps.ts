@@ -1,1 +1,1 @@
-export { load as cheerioLoad } from 'cheerio'
+export { load as cheerioLoad } from "cheerio";
