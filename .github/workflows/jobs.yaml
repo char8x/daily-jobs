@@ -39,11 +39,18 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          deno run -A ./process.ts
+          deno run -A ./alfred-workflow.ts
+
+      - name: Run Homebrew Script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          deno run -A ./homebrew-deno.ts
 
       - name: Run Puppeteer Script
         run: |
           deno run -A ./puppeteer.ts
 
       - name: Type check script
-        run: deno check --remote process.ts
+        run: deno check --remote alfred-workflow.ts homebrew-deno.ts puppeteer.ts
