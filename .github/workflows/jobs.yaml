@@ -53,4 +53,4 @@ jobs:
           deno run -A ./puppeteer.ts
 
       - name: Type check script
-        run: deno check --remote alfred-workflow.ts homebrew-deno.ts puppeteer.ts
+        run: deno check --unstable --remote alfred-workflow.ts homebrew-deno.ts puppeteer.ts
