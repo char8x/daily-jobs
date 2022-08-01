@@ -3,9 +3,9 @@
 # 在执行前 git config core.hooksPath .hooks && chmod u+x .hooks/pre-commit
 FILES=$(deno fmt)
 if [[ $(git diff --stat) != '' ]]; then
-  echo '文件内容有改动，请先新增 fmt 后的文件'
-  exit 1
+  echo '文件内容有改动，请先检查 fmt 后的文件'
+  exit 1 # 退出 git commit 操作
 else
   echo FILES
-  exit 0
+  exit 0 # 继续 git commit 操作
 fi
