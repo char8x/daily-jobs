@@ -1,7 +1,7 @@
 name: jobs
 on:
   schedule:
-    - cron: '0 1 * * *' # run once a day
+    - cron: '0 */12 * * *' # run every 12 hours
   workflow_dispatch: {}
   push:
     branches: [main]
