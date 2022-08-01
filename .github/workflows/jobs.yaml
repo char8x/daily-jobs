@@ -39,7 +39,14 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          deno run -A ./alfred-workflow.ts
+          deno task alfred
+
+      - name: Run Price Script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          deno task price-drop
 
       - name: Run Homebrew Script
         if: false # disable for now
@@ -47,11 +54,11 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          deno run -A ./homebrew-deno.ts
+          deno task homebrew
 
       - name: Run Puppeteer Script
         run: |
-          deno run -A ./puppeteer.ts
+          deno task puppeteer
 
       - name: Type check script
         run: deno check --unstable --remote alfred-workflow.ts homebrew-deno.ts puppeteer.ts

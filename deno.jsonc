@@ -1,3 +1,9 @@
 {
+  "tasks": {
+    "alfred": "deno run -A ./alfred-workflow.ts",
+    "homebrew": "deno run -A ./homebrew-deno.ts",
+    "puppeteer": "deno run -A ./puppeteer.ts",
+    "price-drop": "deno run -A ./monitor-price-drop.ts",
+  },
   "importMap": "./import_map.json"
 }
