@@ -38,6 +38,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
         run: |
           deno task alfred
 
@@ -45,6 +46,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
         run: |
           deno task price-drop
 
@@ -53,6 +55,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
         run: |
           deno task homebrew
 
