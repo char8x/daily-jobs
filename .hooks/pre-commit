@@ -2,8 +2,10 @@
 
 # 在执行前 git config core.hooksPath .hooks && chmod u+x .hooks/pre-commit
 FILES=$(deno fmt)
-if [ -n "$FILES" ]; then
-  echo "formatted, adding files $FILES"
-  echo "$FILES" | xargs git add
+if [[ $(git diff --stat) != '' ]]; then
+  echo '文件内容有改动，请先新增 fmt 后的文件'
+  exit 1
+else
+  echo FILES
+  exit 0
 fi
-exit 0
