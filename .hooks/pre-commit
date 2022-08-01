@@ -6,6 +6,5 @@ if [[ $(git diff --stat) != '' ]]; then
   echo '文件内容有改动，请先检查 fmt 后的文件'
   exit 1 # 退出 git commit 操作
 else
-  echo FILES
   exit 0 # 继续 git commit 操作
 fi
