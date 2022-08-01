@@ -1,3 +1,9 @@
 #!/bin/sh
-echo 'AAAAAA'
-deno fmt
+
+# 在执行前 git config core.hooksPath .hooks && chmod u+x .hooks/pre-commit
+FILES=$(deno fmt)
+if [ -n "$FILES" ]; then
+  echo "formatted, adding files $FILES"
+  echo "$FILES" | xargs git add
+fi
+exit 0
