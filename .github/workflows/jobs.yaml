@@ -5,6 +5,10 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
 
 jobs:
   scheduled:
@@ -35,27 +39,15 @@ jobs:
         run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@14.1.1/install.ts
 
       - name: Run Script
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
         run: |
           deno task alfred
 
       - name: Run Price Script
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
         run: |
           deno task price-drop
 
       - name: Run Homebrew Script
         if: false # disable for now
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
         run: |
           deno task homebrew
 
