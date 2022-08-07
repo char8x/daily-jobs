@@ -1,7 +1,7 @@
 import { load } from "cheerio";
 import { sendMessage } from "/utils.ts";
 
-const SUCCESS_MSG = "降价了，快去看";
+const SUCCESS_MSG = "降价了，快去看; 若已下单，看看是否能申请保价";
 
 async function trackPriceDrop(
   url: string,
