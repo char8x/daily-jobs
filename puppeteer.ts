@@ -7,8 +7,7 @@ try {
   await page.waitForSelector("#footer");
   const title = await page.title();
   console.log(title);
+  await browser.close();
 } catch (error) {
   console.error({ error }, "Something happened!");
-} finally {
-  await browser.close();
 }
