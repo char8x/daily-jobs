@@ -17,6 +17,7 @@ async function trackPriceDrop(
     "#bd > div > div.panel > div > div.price-wrap.cl > div > span > strong",
   ).text().trim();
   if (parseFloat(priceText) < currentPrice) {
+    console.log(`${itemTitle} ${priceText}`);
     await sendMessage(`${itemTitle} ${successMsg}`);
   } else {
     console.log(`${itemTitle} ${priceText}`);
@@ -28,7 +29,7 @@ await Promise.all([
     itemTitle: "微波炉",
     currentPrice: 339,
   }),
-  trackPriceDrop("https://www.miaomiaozhe.com/dvn/-7852994473074386208", {
+  trackPriceDrop("https://www.miaomiaozhe.com/dvn/-7906896281343993642", {
     itemTitle: "鼠标",
     currentPrice: 549,
   }),
