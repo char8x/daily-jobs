@@ -29,8 +29,4 @@ await Promise.all([
     itemTitle: "微波炉",
     currentPrice: 339,
   }),
-  trackPriceDrop("https://www.miaomiaozhe.com/dvn/-7906896281343993642", {
-    itemTitle: "鼠标",
-    currentPrice: 549,
-  }),
 ]);
