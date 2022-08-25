@@ -11,7 +11,7 @@ const onlineVersion = semver.valid(
     content.matchAll(/\/download\/(.*?)\/deno_src\.tar\.gz/g),
   ).flat().at(1) || "",
 );
-const localVersion = "1.24.1";
+const localVersion = "1.24.3";
 
 console.log(`onlineVersion: ${onlineVersion}`);
 console.log(`localVersion: ${localVersion}`);

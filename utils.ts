@@ -1,4 +1,5 @@
 export async function sendMessage(text: string) {
+  console.log("发送消息....");
   await Promise.all([sendTGMessage(text), sendQWMessage(text)]);
 }
 
