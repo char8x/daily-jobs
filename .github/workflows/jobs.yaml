@@ -32,11 +32,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/deno/deno_puppeteer
-          key: chrome-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
-          restore-keys: chrome-${{ runner.os }}-
+          key: chrome-1022525-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
+          restore-keys: chrome-1022525-${{ runner.os }}-
 
       - name: Install Chromium (Unix)
-        run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@14.1.1/install.ts
+        run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
 
       - name: Run Script
         run: |
