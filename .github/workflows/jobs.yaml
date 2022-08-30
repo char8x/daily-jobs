@@ -47,7 +47,7 @@ jobs:
           deno task price-drop
 
       - name: Run Homebrew Script
-        # if: false # disable for now
+        if: false # disable for now
         run: |
           deno task homebrew
 
