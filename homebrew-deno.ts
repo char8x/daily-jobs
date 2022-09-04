@@ -26,5 +26,5 @@ console.log(`denoVersion: ${denoVersion}`);
 
 if (semver.eq(homeBrewVersion || "", denoVersion)) {
   // send msg
-  await sendMessage("Homebrew Deno 版本已为最新，请及时更新");
+  await sendMessage(`Homebrew Deno 版本已为最新(${denoVersion})，请及时更新`);
 }
