@@ -24,9 +24,9 @@ async function trackPriceDrop(
   }
 }
 
-await Promise.all([
-  trackPriceDrop("https://www.miaomiaozhe.com/dvn/7726143786908001311", {
-    itemTitle: "微波炉",
-    currentPrice: 339,
-  }),
-]);
+// await Promise.all([
+//   trackPriceDrop("https://www.miaomiaozhe.com/dvn/7726143786908001311", {
+//     itemTitle: "微波炉",
+//     currentPrice: 339,
+//   }),
+// ]);
