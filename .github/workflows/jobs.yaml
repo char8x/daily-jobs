@@ -29,7 +29,7 @@ jobs:
         run: deno cache --config deno.jsonc deps.ts
 
       - name: Cache Chrome (Linux)
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/deno/deno_puppeteer
           key: chrome-1022525-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
