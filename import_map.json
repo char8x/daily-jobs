@@ -2,6 +2,7 @@
   "imports": {
     "/": "./",
     "./": "./",
+    "deps.ts": "./deps.ts",
     "cheerio": "https://esm.sh/cheerio@1.0.0-rc.12",
     "puppeteer": "https://deno.land/x/puppeteer@16.2.0/mod.ts"
   }

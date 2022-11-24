@@ -3,7 +3,8 @@
     "alfred": "deno run -A ./alfred-workflow.ts",
     "homebrew": "deno run -A ./homebrew-deno.ts",
     "puppeteer": "deno run -A ./puppeteer.ts",
-    "price-drop": "deno run -A ./monitor-price-drop.ts"
+    "price-drop": "deno run -A ./monitor-price-drop.ts",
+    "check-jsdelivr": "deno run -A ./check-jsdelivr.ts"
   },
   "importMap": "./import_map.json"
 }
