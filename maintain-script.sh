@@ -14,7 +14,7 @@ fi
 if [[ -n $(git status --porcelain=v1 2>/dev/null) ]]; then
   git add .
   git commit -m "$MSG"
-  echo $MSG
+  echo "$MSG"
   git push
 else
   echo "clean, check at $TIME"
