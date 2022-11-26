@@ -3,19 +3,47 @@ export async function sendMessage(text: string) {
   await Promise.all([sendTGMessage(text), sendQWMessage(text)]);
 }
 
-export async function sendTGMessage(text: string) {
+interface ITGMessage {
+  chat_id: string | number | undefined;
+  text: string;
+  parse_mode?: string;
+}
+
+export async function sendTGMessage(
+  text: string,
+  options: { type: "text" | "markdown"; receive: "person" | "channel" } = {
+    type: "text",
+    receive: "person",
+  },
+) {
   const token = Deno.env.get("TELEGRAM_BOT_TOKEN") || "";
-  const chatId = Deno.env.get("TELEGRAM_CHAT_ID") || "";
+  const chatId = options.receive === "person"
+    ? Deno.env.get("TELEGRAM_CHAT_ID")
+    : options.receive === "channel"
+    ? Deno.env.get("TELEGRAM_CHANNEL_ID")
+    : "";
+
+  const body: ITGMessage = {
+    chat_id: chatId,
+    text,
+  };
+
+  if (options.type === "markdown") {
+    body.parse_mode = "MarkdownV2";
+  }
 
   await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-    }),
+    body: JSON.stringify(body),
+  }).then(async (res) => {
+    if (res.status !== 200) {
+      console.log(await res.text());
+    }
+  }).catch((err) => {
+    console.error(err);
   });
 }
 

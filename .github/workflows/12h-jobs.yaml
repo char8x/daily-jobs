@@ -3,11 +3,10 @@ on:
   schedule:
     - cron: '0 */12 * * *' # run every 12 hours
   workflow_dispatch: {}
-  push:
-    branches: [main]
 env:
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
   QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
 
 jobs:

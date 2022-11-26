@@ -1,0 +1,43 @@
+name: jobs
+on:
+  schedule:
+    - cron: '30 21 * * *' # run At 21:30
+  workflow_dispatch: {}
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+  QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Setup deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Verify formatting
+        run: deno fmt --check
+
+      - name: Cache dependencies
+        run: deno cache --config deno.jsonc deps.ts
+
+      - name: Cache Chrome (Linux)
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/deno/deno_puppeteer
+          key: chrome-1022525-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
+          restore-keys: chrome-1022525-${{ runner.os }}-
+
+      - name: Install Chromium (Unix)
+        run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
+
+      - name: Run Readhub Script
+        # if: false
+        run: |
+          deno task readhub

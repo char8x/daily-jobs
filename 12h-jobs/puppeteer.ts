@@ -1,4 +1,4 @@
-import { puppeteer } from "./deps.ts";
+import { puppeteer } from "deps.ts";
 
 const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
 try {

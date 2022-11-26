@@ -1,5 +1,5 @@
-import { semver, toml } from "./deps.ts";
-import { sendMessage } from "./utils.ts";
+import { semver, toml } from "deps.ts";
+import { sendMessage } from "/utils.ts";
 
 const content = await fetch(
   "https://raw.githubusercontent.com/Homebrew/homebrew-core/master/Formula/deno.rb",

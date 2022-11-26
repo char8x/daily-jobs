@@ -1,10 +1,11 @@
 {
   "tasks": {
-    "alfred": "deno run -A ./alfred-workflow.ts",
-    "homebrew": "deno run -A ./homebrew-deno.ts",
-    "puppeteer": "deno run -A ./puppeteer.ts",
-    "price-drop": "deno run -A ./monitor-price-drop.ts",
-    "check-jsdelivr": "deno run -A ./check-jsdelivr.ts"
+    "alfred": "deno run -A 12h-jobs/alfred-workflow.ts",
+    "homebrew": "deno run -A 12h-jobs/homebrew-deno.ts",
+    "puppeteer": "deno run -A 12h-jobs/puppeteer.ts",
+    "price-drop": "deno run -A 12h-jobs/monitor-price-drop.ts",
+    "check-jsdelivr": "deno run -A 12h-jobs/check-jsdelivr.ts",
+    "readhub": "deno run -A daily-jobs/readhub.ts"
   },
   "importMap": "./import_map.json"
 }
