@@ -59,4 +59,5 @@ jobs:
           deno task check-jsdelivr
 
       - name: Type check script
+        if: false
         run: deno check --unstable --remote alfred-workflow.ts homebrew-deno.ts puppeteer.ts
