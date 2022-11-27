@@ -42,6 +42,7 @@ jobs:
           deno task alfred
 
       - name: Run Price Script
+        if: false
         run: |
           deno task price-drop
 

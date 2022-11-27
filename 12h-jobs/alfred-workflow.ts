@@ -1,14 +1,23 @@
-import { load } from "cheerio";
+import {
+  DOMParser,
+  initParser,
+} from "https://deno.land/x/deno_dom/deno-dom-wasm-noinit.ts";
 import { sendMessage } from "/utils.ts";
+
+await initParser();
 
 const html = await fetch("https://www.alfredapp.com/workflows/").then((res) =>
   res.text()
 );
 
-const $ = load(html);
-const pageText = $(
+const doc = new DOMParser().parseFromString(
+  html,
+  "text/html",
+);
+
+const pageText = doc?.querySelector(
   "#workflowspage > section:nth-child(4) > div > div > p:nth-child(1)",
-).text().trim();
+)?.textContent.trim();
 
 if (
   pageText !==

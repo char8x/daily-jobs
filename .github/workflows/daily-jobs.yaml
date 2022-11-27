@@ -41,3 +41,8 @@ jobs:
         # if: false
         run: |
           deno task readhub
+      
+      - name: Run Newlearner Channel Script
+        # if: false
+        run: |
+          deno task newlearner-channel

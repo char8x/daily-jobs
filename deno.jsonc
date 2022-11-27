@@ -5,7 +5,8 @@
     "puppeteer": "deno run -A 12h-jobs/puppeteer.ts",
     "price-drop": "deno run -A 12h-jobs/monitor-price-drop.ts",
     "check-jsdelivr": "deno run -A 12h-jobs/check-jsdelivr.ts",
-    "readhub": "deno run -A daily-jobs/readhub.ts"
+    "readhub": "deno run -A daily-jobs/readhub.ts",
+    "newlearner-channel": "deno run -A daily-jobs/newlearner-channel.ts"
   },
   "importMap": "./import_map.json"
 }
