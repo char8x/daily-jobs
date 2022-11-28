@@ -24,7 +24,9 @@ const list = Array.from(
   const elem = e as Element;
   const title = elem.innerText?.replaceAll(/\./g, "\\.");
   const href = elem.getAttribute("href") ?? "";
-  return `• [${title}](${href.startsWith("http") ? href : `${URL}${href}`})`;
+  return `• [${title}](${
+    href.startsWith("http") ? href : `https://readhub.cn${href}`
+  })`;
 });
 
 const message = `\\#Readhub每日早报 ${
