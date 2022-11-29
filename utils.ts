@@ -67,5 +67,8 @@ export function escapeChar(text: string) {
   return text.replaceAll(".", "\\.").replaceAll("-", "\\-").replaceAll(
     "(",
     "\\(",
-  ).replaceAll(")", "\\)");
+  ).replaceAll(")", "\\)").replaceAll(
+    "+",
+    "\\+",
+  );
 }
