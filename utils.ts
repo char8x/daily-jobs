@@ -64,5 +64,8 @@ export async function sendQWMessage(text: string) {
 }
 
 export function escapeChar(text: string) {
-  return text.replaceAll(".", "\\.").replaceAll("-", "\\-");
+  return text.replaceAll(".", "\\.").replaceAll("-", "\\-").replaceAll(
+    "(",
+    "\\(",
+  ).replaceAll(")", "\\)");
 }
