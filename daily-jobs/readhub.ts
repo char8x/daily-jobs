@@ -3,7 +3,7 @@ import {
   Element,
   initParser,
 } from "https://deno.land/x/deno_dom/deno-dom-wasm-noinit.ts";
-import { sendTGMessage } from "/utils.ts";
+import { escapeChar, sendTGMessage } from "/utils.ts";
 
 await initParser();
 
@@ -22,7 +22,7 @@ const list = Array.from(
   ) ?? [],
 ).map((e) => {
   const elem = e as Element;
-  const title = elem.innerText?.replaceAll(/\./g, "\\.");
+  const title = escapeChar(elem.innerText);
   const href = elem.getAttribute("href") ?? "";
   return `• [${title}](${
     href.startsWith("http") ? href : `https://readhub.cn${href}`
