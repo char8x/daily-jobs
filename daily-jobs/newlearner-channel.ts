@@ -19,7 +19,7 @@ const doc = new DOMParser().parseFromString(
 
 function formatNode(elem: Node) {
   let content = "";
-  while (elem.nodeName !== "BR") {
+  while (elem != null && elem.nodeName !== "I") {
     if (elem.nodeName === "#text" && !!elem.textContent.trim()) {
       content += escapeChar(elem.textContent);
     }
@@ -28,8 +28,14 @@ function formatNode(elem: Node) {
         (elem as Element).getAttribute("href")
       })`;
     }
+    if (elem.nodeName === "BR") {
+      content += "\n";
+    }
 
     elem = elem.nextSibling;
+    if (elem == null) {
+      content += "\n\n";
+    }
   }
   return content;
 }
@@ -63,7 +69,7 @@ const list = Array.from(
 if (list.length > 0) {
   const message = `\\#自留地日报 ${
     new Intl.DateTimeFormat("zh-CN").format(new Date()).replaceAll("/", "\\-")
-  }\n\n${list.join("\n\n")}`;
+  }\n\n${list.join("")}`;
 
   await sendTGMessage(message, { type: "markdown", receive: "channel" });
 }
