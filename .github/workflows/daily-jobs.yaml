@@ -28,22 +28,20 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/deno
-          key: deno-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
+          key: deno-${{ runner.os }}-${{ hashFiles('deno.lock') }}
           restore-keys: deno-${{ runner.os }}-
-
-      - name: Cache dependencies
-        run: deno cache --config deno.jsonc deps.ts 12h-jobs/**/*.ts daily-jobs/**/*.ts
 
       - name: Cache Chrome (Linux)
         uses: actions/cache@v3
         with:
           path: ~/.cache/deno/deno_puppeteer
           # PUPPETEER_REVISIONS
-          key: chrome-1022525-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
+          key: chrome-1022525-${{ runner.os }}-${{ hashFiles('deno.lock') }}
           restore-keys: chrome-1022525-${{ runner.os }}-
 
       - name: Install Chromium (Unix)
-        run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
+        run: |
+          PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
 
       - name: Run Readhub Script
         # if: false
