@@ -24,13 +24,21 @@ jobs:
       - name: Verify formatting
         run: deno fmt --check
 
+      - name: Cache Deno modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/deno
+          key: deno-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
+          restore-keys: deno-${{ runner.os }}-
+
       - name: Cache dependencies
-        run: deno cache --config deno.jsonc deps.ts
+        run: deno cache --config deno.jsonc deps.ts 12h-jobs/**/*.{ts,js} daily-jobs/**/*.{ts,js}
 
       - name: Cache Chrome (Linux)
         uses: actions/cache@v3
         with:
           path: ~/.cache/deno/deno_puppeteer
+          # PUPPETEER_REVISIONS
           key: chrome-1022525-${{ runner.os }}-${{ hashFiles('**/import_map.json', '**/depts.ts') }}
           restore-keys: chrome-1022525-${{ runner.os }}-
 
