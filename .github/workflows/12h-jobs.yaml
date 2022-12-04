@@ -33,8 +33,7 @@ jobs:
 
       - name: Cache dependencies
         run: |
-          ls -al
-          deno cache --config deno.jsonc deps.ts 12h-jobs/**/*.ts daily-jobs/**/*.ts
+          deno cache --config deno.jsonc deps.ts ./12h-jobs/**/*.ts ./daily-jobs/**/*.ts
 
       - name: Cache Chrome (Linux)
         uses: actions/cache@v3
@@ -45,7 +44,8 @@ jobs:
           restore-keys: chrome-1022525-${{ runner.os }}-
 
       - name: Install Chromium (Unix)
-        run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
+        run: |
+          PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
 
       - name: Run Script
         run: |
