@@ -2,6 +2,7 @@
   "imports": {
     "/": "./",
     "./": "./",
-    "deps.ts": "./deps.ts"
+    "deps.ts": "./deps.ts",
+    "date-fns": "npm:date-fns@2.29.3"
   }
 }

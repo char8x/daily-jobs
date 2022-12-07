@@ -1,0 +1,49 @@
+name: weekly-jobs
+on:
+  schedule:
+    - cron: '30 13 * * 6' # UTC timezone run At Saturday 21:30
+  workflow_dispatch: {}
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+  QYWECHAT_BOT_HOOKS: ${{ secrets.QYWECHAT_BOT_HOOKS }}
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Setup deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Verify formatting
+        run: deno fmt --check
+
+      - name: Cache Deno modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/deno
+          key: deno-${{ runner.os }}-${{ hashFiles('deno.lock') }}
+          restore-keys: deno-${{ runner.os }}-
+
+      - name: Cache Chrome (Linux)
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/deno/deno_puppeteer
+          # PUPPETEER_REVISIONS
+          key: chrome-1022525-${{ runner.os }}-${{ hashFiles('deno.lock') }}
+          restore-keys: chrome-1022525-${{ runner.os }}-
+
+      - name: Install Chromium (Unix)
+        run: |
+          PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
+
+      - name: Run Hacker News Script
+        # if: false
+        run: |
+          deno task hn-news

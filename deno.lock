@@ -418,5 +418,14 @@
     "https://esm.sh/v99/safe-buffer@5.1.2/deno/safe-buffer.js": "8dda606a3ff20ed286afa33910d3eca9237be2df4b11aa9f0e05e6c5b8112a8f",
     "https://esm.sh/v99/set-immediate-shim@1.0.1/deno/set-immediate-shim.js": "5172191aa7ea49e65f40a55b71a31a4ae8f1821396bd524fa1c5e2b2f1e7cb7a",
     "https://esm.sh/v99/util-deprecate@1.0.2/deno/util-deprecate.js": "465830ef20bb4e16da7d89898a5359736a8639c450e10db4fb3634bfbd8dd987"
+  },
+  "npm": {
+    "specifiers": { "date-fns@2.29.3": "date-fns@2.29.3" },
+    "packages": {
+      "date-fns@2.29.3": {
+        "integrity": "sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==",
+        "dependencies": {}
+      }
+    }
   }
 }
