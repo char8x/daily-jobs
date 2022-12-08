@@ -1,7 +1,7 @@
 name: daily-jobs
 on:
   schedule:
-    - cron: '30 13 * * *' # UTC timezone run At 21:30
+    - cron: '0 15 * * *' # UTC timezone run At 23:00
   workflow_dispatch: {}
 env:
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
