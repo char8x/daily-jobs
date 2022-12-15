@@ -44,6 +44,7 @@ jobs:
           PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
 
       - name: Run Script
+        if: false
         run: |
           deno task alfred
 
@@ -58,10 +59,12 @@ jobs:
           deno task homebrew
 
       - name: Run Puppeteer Script
+        if: false
         run: |
           deno task puppeteer
       
       - name: Run Content Check Script
+        if: false
         run: |
           deno task check-jsdelivr
 
