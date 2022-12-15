@@ -47,3 +47,8 @@ jobs:
         # if: false
         run: |
           deno task hn-news
+      
+      - name: Run Lobsters News Script
+        # if: false
+        run: |
+          deno task lobsters-news

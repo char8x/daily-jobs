@@ -7,7 +7,8 @@
     "check-jsdelivr": "deno run -A 12h-jobs/check-jsdelivr.ts",
     "readhub": "deno run -A daily-jobs/readhub.ts",
     "newlearner-channel": "deno run -A daily-jobs/newlearner-channel.ts",
-    "hn-news": "deno run -A weekly-jobs/hn-news.ts"
+    "hn-news": "deno run -A weekly-jobs/hn-news.ts",
+    "lobsters-news": "deno run -A weekly-jobs/lobsters-news.ts"
   },
   "importMap": "./import_map.json"
 }
